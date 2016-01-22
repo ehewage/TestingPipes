@@ -1,0 +1,6 @@
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.config
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.pdb
+C:\Users\Manoj\Dropbox\4thYrProject\Software\projConstrutionWorker\TestingPipes\C#PythonTest\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.csprojResolveAssemblyReference.cache

@@ -28,14 +28,15 @@ public class Client : MonoBehaviour
         UnityEngine.Debug.Log("Opening pipe");
         OpenPipe();
 
-        byte[] buffer = new byte[10];
+        byte[] buffer = new byte[50];
         int i = 0;
         string[] chunk = new string[50];
         //do
-        //{
+        for (i=0; i<10; i++)
+        {
             PipelineStream.Read(buffer, 0, buffer.Length);
-            
-            chunk[i] = Encoding.UTF8.GetString(buffer);
+
+            chunk[i] = Encoding.ASCII.GetString(buffer);
 
             //foreach (var item in chunk)
             //{
@@ -43,9 +44,12 @@ public class Client : MonoBehaviour
             //}
             UnityEngine.Debug.Log(String.Format("Recieved: {0}", chunk[i]));
             i++;
-        //}
+            //ClosePipe();
+            //UnityEngine.Debug.Log("Client closed");
+        }
+        //while (PipelineStream.IsConnected);
         //while (!PipelineStream.IsMessageComplete && i<chunk.Length);
-
+        OnDestroy();
 
         ////WriteAsync();
         //for  (int i = 0; i<10; i++)
@@ -64,7 +68,8 @@ public class Client : MonoBehaviour
     {
         //PipelineStream = new NamedPipeClientStream(".", "Pipeline", PipeDirection.In, PipeOptions.Asynchronous);
 
-        PipelineStream = new NamedPipeClientStream("Pipeline");
+        //PipelineStream = new NamedPipeClientStream("Pipeline");
+        PipelineStream = new NamedPipeClientStream("UnityPipe");
         UnityEngine.Debug.Log("Created NamedPipeClientStream");
         br = new BinaryReader(PipelineStream);
 
