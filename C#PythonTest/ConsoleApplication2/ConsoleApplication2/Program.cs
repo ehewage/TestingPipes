@@ -27,21 +27,22 @@ namespace ConsoleApplication2
 
             //Connect Python Pipe
             ConnectPythonPipe(server2);
+            //Console.ReadLine();
 
             //Read Python Pipe
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i != 1; i++)
             {
                 char[] receivedData;
                 string data = ReadPythonPipe(server2);
-                Console.WriteLine("Main recieved: {0}", data);
-                Console.WriteLine("Press Enter to send to Unity");
-                Console.ReadLine();
+                //Console.WriteLine("Main recieved: {0}", data);
+                //Console.WriteLine("Press Enter to send to Unity");
+                //Console.ReadLine();
 
                 //Send to Unity Pipe Continuously
                 SendUnityPipe(server1, data);
-                Console.WriteLine("Press Enter read from Python");
-                Console.ReadLine();
+                //Console.WriteLine("Press Enter read from Python");
+                //Console.ReadLine();
             }
         }
 
@@ -74,6 +75,7 @@ namespace ConsoleApplication2
                 try
                 {
                     var len = (int)br.ReadUInt32();            // Read string length
+                    //Console.WriteLine("Length: {0}", len.ToString());
                     var str = new string(br.ReadChars(len));    // Read string
 
                     Console.WriteLine("Read: \"{0}\"", str);
@@ -111,7 +113,7 @@ namespace ConsoleApplication2
 
 
         }
-
+            
         static void SendUnityPipe(NamedPipeServerStream server, string data)
         {
             
@@ -121,7 +123,7 @@ namespace ConsoleApplication2
             server.Write(msg, 0, msg.Length);
             foreach (var item in msg)
             {
-                Console.WriteLine("Wrote: {0}", item.ToString());
+                //Console.WriteLine("Wrote: {0}", item.ToString());
 
             }
         }
