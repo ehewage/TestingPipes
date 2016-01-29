@@ -31,7 +31,7 @@ namespace ConsoleApplication2
 
             //Read Python Pipe
 
-            for (int i = 0; i != 1; i++)
+            for (int i = 0; i <5000; i++)
             {
                 char[] receivedData;
                 string data = ReadPythonPipe(server2);
@@ -121,11 +121,11 @@ namespace ConsoleApplication2
   
             //WRITE TO PIPE 
             server.Write(msg, 0, msg.Length);
-            foreach (var item in msg)
-            {
-                //Console.WriteLine("Wrote: {0}", item.ToString());
+            //foreach (var item in msg)
+            //{
+            //    Console.WriteLine("Wrote: {0}", item.ToString());
 
-            }
+            //}
         }
     }
 }
