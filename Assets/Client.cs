@@ -26,12 +26,13 @@ public class Client : MonoBehaviour
     string chunk;
     //public Text pipeData;
     int counter = 0;
+    public bool HandTracking = false;
 
     private void Start()
     {
-        UnityEngine.Debug.Log("Opening pipe");
+        //UnityEngine.Debug.Log("Opening pipe");
         //pipeData.text = "Opening pipe";
-        OpenPipe();
+        //OpenPipe();
 
         
         //string[] chunk = new string[100];
@@ -69,19 +70,26 @@ public class Client : MonoBehaviour
 
     private void Update()
     {
-        
+
+       // Go to Edit->Project Settings->Player, and tick "Run In Background".
+
+
+        if (HandTracking)
+        {
+
             if (PipelineStream.IsConnected)
             {
                 PipelineStream.Read(buffer, 0, buffer.Length);
 
                 chunk = Encoding.ASCII.GetString(buffer);
-               
-                UnityEngine.Debug.Log(String.Format("Recieved ({0}) : {1}", counter, chunk ));
+
+                UnityEngine.Debug.Log(String.Format("Recieved ({0}) : {1}", counter, chunk));
             }
             else
             {
                 OnDestroy();
             }
+        }
         
         
 
@@ -159,5 +167,16 @@ public class Client : MonoBehaviour
         //StreamWriter writer = new StreamWriter(PipelineStream);
         //writer.WriteLine("Hello");
         //writer.Flush();
+    }
+
+    public void OnClick1()
+    {
+        UnityEngine.Debug.Log("Opening pipe");
+        OpenPipe();
+    }
+
+    public void OnClick2()
+    {
+        HandTracking = !HandTracking;
     }
 }
