@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/HelloWorld.unity
+- path: Assets/HandControl.unity
   isLoaded: 1
   isActive: 1
