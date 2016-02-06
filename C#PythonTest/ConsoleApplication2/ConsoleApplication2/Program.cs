@@ -23,7 +23,7 @@ namespace ConsoleApplication2
             Console.WriteLine("Started server2");
 
             //Connect Unity Pipe
-            ConnectUnityPipe(server1);
+            //ConnectUnityPipe(server1);
 
             //Connect Python Pipe
             ConnectPythonPipe(server2);
@@ -31,16 +31,19 @@ namespace ConsoleApplication2
 
             //Read Python Pipe
 
-            for (int i = 0; i <5000; i++)
+            for (int i = 0; i <5000; i--) //infinite loop
             {
-                char[] receivedData;
+                //char[] receivedData;
                 string data = ReadPythonPipe(server2);
                 //Console.WriteLine("Main recieved: {0}", data);
                 //Console.WriteLine("Press Enter to send to Unity");
                 //Console.ReadLine();
-
+                Console.WriteLine("Raw data = " + data);
+                //Clean up [] characters
+                string cleanData = CleanMessage(data);
+                Console.WriteLine("Clean data = " + cleanData);
                 //Send to Unity Pipe Continuously
-                SendUnityPipe(server1, data);
+                //SendUnityPipe(server1, cleanData);
                 //Console.WriteLine("Press Enter read from Python");
                 //Console.ReadLine();
             }
@@ -127,5 +130,30 @@ namespace ConsoleApplication2
 
             //}
         }
+
+        static string CleanMessage(string data)
+        {
+            
+            data = data.Substring(2, data.Length - 4);
+            var charsToRemove = new string[] { "[","]"};
+            foreach (var c in charsToRemove)
+            {
+                data = data.Replace(c, string.Empty);
+            }
+            string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s+", " ");
+            cleanedString = cleanedString.Replace(' ', ',');
+            //data = data.Replace(' ', ',');
+            //data = data.Replace('[', string.Empty).Replace(']', ' ').Replace(' ',',');
+
+            //data = data.Replace(",,,,", ',');
+            StringBuilder b = new StringBuilder(data);
+            //b.Replace(",,,,", "").Replace(",,,", ",").Replace(",,", ",");
+            //data = b.ToString();
+            //data = data.Substring(2, data.Length - 2);
+
+            //cleanString = data.Replace('[', ' ').Replace(']', ';');
+            return cleanedString;
+        }
     }
+        
 }
