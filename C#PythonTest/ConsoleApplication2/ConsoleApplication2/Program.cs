@@ -23,7 +23,7 @@ namespace ConsoleApplication2
             Console.WriteLine("Started server2");
 
             //Connect Unity Pipe
-            //ConnectUnityPipe(server1);
+            ConnectUnityPipe(server1);
 
             //Connect Python Pipe
             ConnectPythonPipe(server2);
@@ -38,12 +38,14 @@ namespace ConsoleApplication2
                 //Console.WriteLine("Main recieved: {0}", data);
                 //Console.WriteLine("Press Enter to send to Unity");
                 //Console.ReadLine();
-                Console.WriteLine("Raw data = " + data);
+                //Console.WriteLine("Raw data = " + data);
+
                 //Clean up [] characters
-                string cleanData = CleanMessage(data);
-                Console.WriteLine("Clean data = " + cleanData);
+                //string cleanData = CleanMessage(data);
+                //Console.WriteLine("Clean data = " + cleanData);
+
                 //Send to Unity Pipe Continuously
-                //SendUnityPipe(server1, cleanData);
+                SendUnityPipe(server1, data);
                 //Console.WriteLine("Press Enter read from Python");
                 //Console.ReadLine();
             }
@@ -124,6 +126,7 @@ namespace ConsoleApplication2
   
             //WRITE TO PIPE 
             server.Write(msg, 0, msg.Length);
+            
             //foreach (var item in msg)
             //{
             //    Console.WriteLine("Wrote: {0}", item.ToString());
@@ -142,6 +145,18 @@ namespace ConsoleApplication2
             }
             string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s+", " ");
             cleanedString = cleanedString.Replace(' ', ',');
+
+            if (cleanedString[0] == ',')
+            {
+                cleanedString = cleanedString.Substring(1, cleanedString.Length - 1);
+            }
+            char last = cleanedString[cleanedString.Length - 1];
+            if (last == ',')
+            {
+                cleanedString = cleanedString.Substring(0, cleanedString.Length - 1);
+            }
+
+        
             //data = data.Replace(' ', ',');
             //data = data.Replace('[', string.Empty).Replace(']', ' ').Replace(' ',',');
 
