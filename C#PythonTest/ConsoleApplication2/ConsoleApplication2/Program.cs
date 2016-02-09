@@ -23,7 +23,7 @@ namespace ConsoleApplication2
             Console.WriteLine("Started server2");
 
             //Connect Unity Pipe
-            ConnectUnityPipe(server1);
+           ConnectUnityPipe(server1);
 
             //Connect Python Pipe
             ConnectPythonPipe(server2);
@@ -45,7 +45,7 @@ namespace ConsoleApplication2
                 //Console.WriteLine("Clean data = " + cleanData);
 
                 //Send to Unity Pipe Continuously
-                SendUnityPipe(server1, data);
+            SendUnityPipe(server1, data);
                 //Console.WriteLine("Press Enter read from Python");
                 //Console.ReadLine();
             }
